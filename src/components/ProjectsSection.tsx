@@ -77,19 +77,19 @@ const Projects: React.FC = () => {
       title: "Agile with Atlassian Jira & Agile Project Management",
       description:
         "Certificate of successful completion of Agile methodology and project management using Atlassian Jira.",
-      file: "/Agile Aditya Kumar.pdf",
+      file: "/Agile with jira.pdf",
     },
     {
       title: "Agile with Atlassian Jira Project Management",
       description:
         "Alternate issued certificate for Agile Project Management course using Jira.",
-      file: "/Coursera Agile Project Management.pdf",
+      file: "/Coursera Agile Project Managemen.pdf",
     },
     {
       title: "Blockchain Specialization Certificate",
       description:
         "Certificate of completion for Blockchain specialization as part of CSE B.Tech program.",
-      file: "/Coursera BlockChain All.pdf",
+      file: "/Coursera Blockchain Platforms.pdf",
     },
     {
       title: "Red Hat Training Certificate",

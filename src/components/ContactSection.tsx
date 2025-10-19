@@ -50,7 +50,7 @@ const contactInfo = [
   {
     icon: <LocationOn />,
     title: 'Location',
-    value: 'Mumbai, India',
+    value: 'Ballipur banewra Mariahu jaunpur, Uttar Pardesh',
     link: null,
   },
 ];
