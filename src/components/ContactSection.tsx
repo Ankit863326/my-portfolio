@@ -65,7 +65,7 @@ const socialLinks = [
   {
     icon: <GitHub />,
     name: 'GitHub',
-    url: 'https://github.com/Ankit8633',
+    url: 'https://github.com/Ankit863326',
     color: '#333333',
   },
   {

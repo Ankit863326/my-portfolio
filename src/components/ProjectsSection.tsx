@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, GitFork, Github, Star, Users } from 'lucide-react';
+import { ExternalLink, GitFork, Github, Star, Users, FileText } from 'lucide-react';
 
 const Projects: React.FC = () => {
   const projects = [
@@ -74,28 +74,32 @@ const Projects: React.FC = () => {
 
     // 🔹 Certificates Section
     {
-      title: "Agile with Atlassian Jira & Agile Project Management",
+      title: "Agile with Atlassian Jira",
       description:
         "Certificate of successful completion of Agile methodology and project management using Atlassian Jira.",
       file: "/Agile with jira.pdf",
+      isCertificate: true, // Added flag to distinguish styling if needed
     },
     {
-      title: "Agile with Atlassian Jira Project Management",
+      title: "Agile Project Management",
       description:
         "Alternate issued certificate for Agile Project Management course using Jira.",
       file: "/Coursera Agile Project Managemen.pdf",
+      isCertificate: true,
     },
     {
-      title: "Blockchain Specialization Certificate",
+      title: "Blockchain Specialization",
       description:
         "Certificate of completion for Blockchain specialization as part of CSE B.Tech program.",
       file: "/Coursera Blockchain Platforms.pdf",
+      isCertificate: true,
     },
     {
-      title: "Red Hat Training Certificate",
+      title: "Red Hat Training",
       description:
         "Certification for completing Red Hat training.",
       file: "/Course REd had certificate.pdf",
+      isCertificate: true,
     },
   ];
 
@@ -113,21 +117,29 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
+    <section 
+      id="projects" 
+      className="py-20 text-white"
+      // Applying the exact same background as the Hero Section
+      style={{
+        background: 'radial-gradient(circle at center, #11112b 0%, #0a0a1a 100%)',
+      }}
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={containerVariants}
           className="max-w-7xl mx-auto"
         >
+          {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#b06ab3] to-[#4568dc] bg-clip-text text-transparent">
               Featured Projects
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-[#b06ab3] to-[#4568dc] mx-auto rounded-full"></div>
+            <p className="text-lg text-gray-400 mt-6 max-w-2xl mx-auto">
               Here are some of my recent projects and certificates that showcase
               my skills and achievements.
             </p>
@@ -139,50 +151,61 @@ const Projects: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -10 }}
-                className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                // Glassmorphism Card Style
+                className="group relative rounded-xl overflow-hidden transition-all duration-300 border border-white/10 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(37,117,252,0.2)]"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  backdropFilter: 'blur(10px)',
+                }}
               >
-                {/* ✅ Image only for projects */}
-                {project.image && (
-                  <div className="relative overflow-hidden">
+                {/* Image Section (Projects Only) */}
+                {project.image ? (
+                  <div className="relative overflow-hidden h-48">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] to-transparent z-10 opacity-60" />
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
+                  </div>
+                ) : (
+                  // Placeholder Icon for Certificates
+                  <div className="h-24 bg-gradient-to-br from-blue-900/20 to-purple-900/20 flex items-center justify-center border-b border-white/5">
+                     <FileText size={40} className="text-blue-400 opacity-50" />
                   </div>
                 )}
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                  <p className="text-gray-400 mb-4 line-clamp-3 text-sm leading-relaxed">
                     {project.description}
                   </p>
 
-                  {/* ✅ Show project stats & tech stack only for projects */}
-                  {project.stats && (
+                  {/* Tech Stack & Stats (Projects Only) */}
+                  {project.technologies && (
                     <>
-                      <div className="flex items-center gap-4 mb-4 text-sm text-gray-500 dark:text-gray-400">
-                        <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-4 mb-4 text-xs text-gray-500">
+                        <div className="flex items-center gap-1 hover:text-yellow-400 transition-colors">
                           <Star size={14} />
-                          <span>{project.stats.stars}</span>
+                          <span>{project.stats?.stars}</span>
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 hover:text-blue-400 transition-colors">
                           <GitFork size={14} />
-                          <span>{project.stats.forks}</span>
+                          <span>{project.stats?.forks}</span>
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 hover:text-green-400 transition-colors">
                           <Users size={14} />
-                          <span>{project.stats.contributors}</span>
+                          <span>{project.stats?.contributors}</span>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="flex flex-wrap gap-2 mb-6">
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full font-medium"
+                            className="px-2 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs rounded-full font-medium"
                           >
                             {tech}
                           </span>
@@ -191,8 +214,8 @@ const Projects: React.FC = () => {
                     </>
                   )}
 
-                  {/* ✅ Buttons for project / certificate */}
-                  <div className="flex gap-3">
+                  {/* Action Buttons */}
+                  <div className="flex gap-3 mt-auto">
                     {project.github && (
                       <motion.a
                         href={project.github}
@@ -200,7 +223,7 @@ const Projects: React.FC = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex-1 bg-gray-900 dark:bg-gray-700 text-white py-2 px-4 rounded-lg text-center font-medium hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors flex items-center justify-center gap-2"
+                        className="flex-1 bg-white/5 text-white py-2 px-4 rounded-lg text-center text-sm font-medium hover:bg-white/10 transition-colors flex items-center justify-center gap-2 border border-white/10"
                       >
                         <Github size={16} />
                         Code
@@ -213,22 +236,23 @@ const Projects: React.FC = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 px-4 rounded-lg text-center font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 px-4 rounded-lg text-center text-sm font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all flex items-center justify-center gap-2"
                       >
                         <ExternalLink size={16} />
                         Demo
                       </motion.a>
                     )}
+                    {/* Certificate Download Button */}
                     {project.file && (
                       <motion.a
                         href={project.file}
                         target="_blank"
                         rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2 px-4 rounded-lg text-center font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full bg-gradient-to-r from-emerald-600/80 to-teal-600/80 text-white py-2 px-4 rounded-lg text-center text-sm font-medium hover:shadow-lg hover:shadow-emerald-500/20 transition-all flex items-center justify-center gap-2 border border-emerald-500/30"
                       >
-                        <ExternalLink size={16} />
+                        <FileText size={16} />
                         View Certificate
                       </motion.a>
                     )}

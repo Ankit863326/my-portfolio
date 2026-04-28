@@ -8,7 +8,7 @@ import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
 import ResumeSection from './components/ResumeSection';
-import Timeline from './components/ui/Timeline'; // Correct path is here
+import Timeline from './components/ui/Timeline'; 
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
