@@ -106,8 +106,8 @@ const HeroSection: React.FC = () => {
 
   const handleResumeClick = () => {
     const link = document.createElement('a');
-    link.href = '/ankit_resume.pdf'; // Ensure this file exists in your public folder
-    link.download = 'ankit_resume.pdf';
+    link.href = '/Ankit.Resume.pdf'; // Ensure this file exists in your public folder
+    link.download = 'Ankit.Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
