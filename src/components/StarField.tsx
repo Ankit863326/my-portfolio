@@ -10,41 +10,52 @@ const StarField: React.FC = () => {
     if (!ctx) return;
     let animId: number;
 
+    const dots: { x: number; y: number; r: number; baseOpacity: number; phase: number; speed: number }[] = [];
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    resize();
-    window.addEventListener('resize', resize);
 
-    const stars = Array.from({ length: 100 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.4 + 0.2,
-      speed: Math.random() * 0.25 + 0.04,
-      opacity: Math.random() * 0.5 + 0.15,
-    }));
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach((s) => {
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(180, 200, 255, ${s.opacity})`;
-        ctx.fill();
-        s.y -= s.speed;
-        if (s.y < 0) {
-          s.y = canvas.height;
-          s.x = Math.random() * canvas.width;
-        }
-      });
-      animId = requestAnimationFrame(draw);
+    const initDots = () => {
+      dots.length = 0;
+      const count = Math.floor((canvas.width * canvas.height) / 14000);
+      for (let i = 0; i < count; i++) {
+        dots.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.3 + 0.2,
+          baseOpacity: Math.random() * 0.3 + 0.08,
+          phase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.008 + 0.003,
+        });
+      }
     };
-    draw();
+
+    let frame = 0;
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      frame++;
+      dots.forEach((d) => {
+        const opacity = d.baseOpacity + Math.sin(d.phase + frame * d.speed) * 0.12;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200, 215, 255, ${Math.max(0, opacity)})`;
+        ctx.fill();
+      });
+      animId = requestAnimationFrame(animate);
+    };
+
+    resize();
+    initDots();
+    animate();
+
+    const handleResize = () => { resize(); initDots(); };
+    window.addEventListener('resize', handleResize);
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
