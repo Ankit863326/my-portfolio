@@ -11,6 +11,7 @@ import ResumeSection from './components/ResumeSection';
 import Timeline from './components/ui/Timeline'; 
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import StarField from './components/StarField';
 
 const AppContent: React.FC = () => {
   const { isDarkMode } = useTheme();
@@ -18,7 +19,11 @@ const AppContent: React.FC = () => {
   return (
     <MuiThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-      <div style={{ overflow: 'hidden' }}>
+      {/* ===== BACKGROUND EFFECTS (dot grid + floating stars) ===== */}
+      <div className="bg-grid" />
+      <StarField />
+      {/* ===== MAIN CONTENT ===== */}
+      <div style={{ overflow: 'hidden', position: 'relative', zIndex: 1 }}>
         <Navbar />
         <HeroSection />
         <AboutSection />
