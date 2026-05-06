@@ -12,7 +12,7 @@ const resumeHighlights = [
 ];
 
 const ResumeSection = () => {
-  const resumeFileName = "ankit_resume.pdf";
+  const resumeFileName = "Ankit.Resume.pdf";
 
   return (
     <Box id="resume" sx={{ py: 12, bgcolor: 'background.default' }}>
