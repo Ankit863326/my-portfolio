@@ -130,12 +130,15 @@ const AboutSection: React.FC = () => {
 
           {/* ── Bio + Quick Facts ── */}
           <Grid container spacing={6} alignItems="flex-start" sx={{ mb: 10 }}>
+            {/* LEFT: Avatar + Title + Bio */}
             <Grid item xs={12} md={7}>
               <motion.div variants={itemVariants}>
-                <Stack spacing={4}>
+                <Stack spacing={3}>
+                  {/* Avatar inline with title */}
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
                     <Box
                       sx={{
+                        flexShrink: 0,
                         position: 'relative',
                         width: 120,
                         height: 120,
@@ -155,12 +158,13 @@ const AboutSection: React.FC = () => {
                         }}
                       />
                     </Box>
-                  </Box>
-
-                  <Box>
-                    <Typography variant="h4" sx={{ fontWeight: 600, mb: 2, color: 'text.primary' }}>
+                    <Typography variant="h4" sx={{ fontWeight: 600, color: 'text.primary' }}>
                       Passionate Developer & Problem Solver
                     </Typography>
+                  </Box>
+
+                  {/* Bio text */}
+                  <Box>
                     <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.8, mb: 2 }}>
                       I'm a dedicated software engineering student with a passion for creating
                       innovative digital solutions. With experience in full-stack development,
@@ -174,6 +178,7 @@ const AboutSection: React.FC = () => {
               </motion.div>
             </Grid>
 
+            {/* RIGHT: Quick Facts */}
             <Grid item xs={12} md={5}>
               <motion.div variants={itemVariants}>
                 <Card
@@ -219,7 +224,7 @@ const AboutSection: React.FC = () => {
             </Grid>
           </Grid>
 
-          {/* ── Skills ── */}
+          {/* ── Technical Skills ── */}
           <motion.div variants={itemVariants}>
             <Typography
               variant="h3"
@@ -236,66 +241,80 @@ const AboutSection: React.FC = () => {
             </Typography>
           </motion.div>
 
-          <Grid container spacing={3} alignItems="stretch" sx={{ mb: 10 }}>
+          {/* 2 rows × 3 columns grid */}
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: {
+                xs: '1fr',
+                sm: 'repeat(2, 1fr)',
+                md: 'repeat(3, 1fr)',
+              },
+              gap: 3,
+              mb: 10,
+            }}
+          >
             {skills.map((skill) => (
-              <Grid item xs={12} sm={6} md={4} key={skill.name} sx={{ display: 'flex' }}>
-                <motion.div variants={itemVariants} style={{ width: '100%' }}>
-                  <Card
-                    sx={{
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      bgcolor: alpha(theme.palette.background.default, 0.6),
-                      backdropFilter: 'blur(10px)',
-                      borderRadius: 4,
-                      border: '1px solid',
-                      borderColor: 'divider',
-                      transition: 'all 0.3s ease-in-out',
-                      '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: `0 10px 30px ${alpha(skill.color, 0.2)}`,
-                        borderColor: skill.color,
-                      },
-                    }}
-                  >
-                    <CardContent sx={{ p: 4, flexGrow: 1 }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-                        <Box
+              <motion.div key={skill.name} variants={itemVariants} style={{ display: 'flex' }}>
+                <Card
+                  sx={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    bgcolor: alpha(theme.palette.background.default, 0.6),
+                    backdropFilter: 'blur(10px)',
+                    borderRadius: 4,
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: `0 10px 30px ${alpha(skill.color, 0.2)}`,
+                      borderColor: skill.color,
+                    },
+                  }}
+                >
+                  <CardContent sx={{ p: 4, flexGrow: 1 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+                      <Box
+                        sx={{
+                          p: 1.5,
+                          borderRadius: 2,
+                          background: `linear-gradient(135deg, ${skill.color}, ${alpha(skill.color, 0.7)})`,
+                          color: 'white',
+                          display: 'flex',
+                          boxShadow: `0 4px 12px ${alpha(skill.color, 0.4)}`,
+                        }}
+                      >
+                        {skill.icon}
+                      </Box>
+                      <Typography variant="h5" fontWeight="bold">
+                        {skill.name}
+                      </Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                      {skill.technologies.map((tech) => (
+                        <Chip
+                          key={tech}
+                          label={tech}
+                          size="small"
                           sx={{
-                            p: 1.5, borderRadius: 2,
-                            background: `linear-gradient(135deg, ${skill.color}, ${alpha(skill.color, 0.7)})`,
-                            color: 'white', display: 'flex',
-                            boxShadow: `0 4px 12px ${alpha(skill.color, 0.4)}`,
+                            borderRadius: 1,
+                            bgcolor: alpha(skill.color, 0.1),
+                            border: '1px solid',
+                            borderColor: alpha(skill.color, 0.2),
+                            fontWeight: 500,
+                            color: 'text.primary',
+                            '&:hover': { bgcolor: alpha(skill.color, 0.2) },
                           }}
-                        >
-                          {skill.icon}
-                        </Box>
-                        <Typography variant="h5" fontWeight="bold">{skill.name}</Typography>
-                      </Box>
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                        {skill.technologies.map((tech) => (
-                          <Chip
-                            key={tech}
-                            label={tech}
-                            size="small"
-                            sx={{
-                              borderRadius: 1,
-                              bgcolor: alpha(skill.color, 0.1),
-                              border: '1px solid',
-                              borderColor: alpha(skill.color, 0.2),
-                              fontWeight: 500,
-                              color: 'text.primary',
-                              '&:hover': { bgcolor: alpha(skill.color, 0.2) },
-                            }}
-                          />
-                        ))}
-                      </Box>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Grid>
+                        />
+                      ))}
+                    </Box>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </Grid>
+          </Box>
 
           {/* ── Interests ── */}
           <Box sx={{ textAlign: 'center' }}>
@@ -332,6 +351,7 @@ const AboutSection: React.FC = () => {
               </Box>
             </motion.div>
           </Box>
+
         </motion.div>
       </Container>
     </Box>
