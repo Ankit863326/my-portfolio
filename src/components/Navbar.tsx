@@ -25,9 +25,8 @@ import { useTheme as useCustomTheme } from '../context/ThemeContext';
 const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
+  { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Resume', href: '#resume' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -40,23 +39,17 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setScrolled(isScrolled);
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const handleNavClick = (href: string) => {
     const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
     setMobileOpen(false);
   };
 
@@ -85,11 +78,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <motion.div initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
         <AppBar
           position="fixed"
           sx={{
@@ -127,10 +116,7 @@ const Navbar: React.FC = () => {
                     sx={{
                       color: 'text.primary',
                       fontWeight: 500,
-                      '&:hover': {
-                        bgcolor: 'primary.main',
-                        color: 'white',
-                      },
+                      '&:hover': { bgcolor: 'primary.main', color: 'white' },
                       transition: 'all 0.3s ease',
                     }}
                     onClick={() => handleNavClick(item.href)}
@@ -155,10 +141,7 @@ const Navbar: React.FC = () => {
                   sx={{
                     ml: 1,
                     color: 'text.primary',
-                    '&:hover': {
-                      bgcolor: 'primary.main',
-                      color: 'white',
-                    },
+                    '&:hover': { bgcolor: 'primary.main', color: 'white' },
                     transition: 'all 0.3s ease',
                   }}
                 >
@@ -180,14 +163,7 @@ const Navbar: React.FC = () => {
         </AppBar>
       </motion.div>
 
-      <Drawer
-        anchor="right"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
-      >
+      <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true }}>
         {drawer}
       </Drawer>
     </>
