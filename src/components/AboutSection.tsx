@@ -33,14 +33,14 @@ import { motion, useInView } from 'framer-motion';
 const quickFacts = [
   { icon: <School sx={{ fontSize: 20 }} />, label: 'B.Tech CSE @ Your University', color: '#60a5fa' },
   { icon: <Code sx={{ fontSize: 20 }} />, label: 'Full-Stack Developer', color: '#a78bfa' },
-  { icon: <LocationOn sx={{ fontSize: 20 }} />, label: 'Your City → Destination', color: '#34d399' },
-  { icon: <Favorite sx={{ fontSize: 20 }} />, label: 'Poet · Stargazer · Cricket Fan', color: '#f87171' },
+  { icon: <LocationOn sx={{ fontSize: 20 }} />, label: 'Jaunpur → Pune,India ', color: '#34d399' },
+  { icon: <Favorite sx={{ fontSize: 20 }} />, label: 'Poet · Gamer · Cricket Fan', color: '#f87171' },
 ];
 
 const stats = [
   { value: '10+', label: 'Projects Built' },
   { value: '2+', label: 'Years Coding' },
-  { value: '8.5', label: 'CGPA' },
+  { value: '7.33', label: 'CGPA' },
 ];
 
 const skills = [
