@@ -1,63 +1,41 @@
-import React from 'react';
-import {
-  Box,
-  Container,
-  Typography,
-  useTheme,
-} from '@mui/material';
-import { motion } from 'framer-motion';
+<!-- ============================================
+     ANKIT SINGH PORTFOLIO FOOTER
+     Place this code just before </body> tag
+     ============================================ -->
 
-const Footer: React.FC = () => {
-  const theme = useTheme();
+<footer style="
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+">
+  <p style="
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+  ">
+    © 2026 Ankit Singh. All rights reserved.
+  </p>
 
-  return (
-    <Box
-      sx={{
-        bgcolor: 'background.default',
-        py: 4,
-        borderTop: '1px solid',
-        borderColor: 'divider',
-      }}
-    >
-      <Container maxWidth="lg">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: 2,
-            }}
-          >
-            <Typography
-              variant="body2"
-              sx={{
-                color: 'text.secondary',
-                textAlign: { xs: 'center', md: 'left' },
-              }}
-            >
-              © {new Date().getFullYear()} Ankit Singh. All rights reserved.
-            </Typography>
-            
-            <Typography
-              variant="body2"
-              sx={{
-                color: 'text.secondary',
-                textAlign: { xs: 'center', md: 'right' },
-              }}
-            >
-              Built with ❤️ using React, TypeScript & Material-UI
-            </Typography>
-          </Box>
-        </motion.div>
-      </Container>
-    </Box>
-  );
-};
+  <p style="
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  ">
+    Built with
+    <span style="color: #ef4444; font-size: 16px;">♥</span>
+    using React, TypeScript &amp; Material-UI
+  </p>
+</footer>
 
-export default Footer;
+<!-- ============================================
+     END OF FOOTER
+     ============================================ -->
