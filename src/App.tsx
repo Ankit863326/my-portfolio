@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import React from 'react';
 import { ThemeProvider as MuiThemeProvider, CssBaseline } from '@mui/material';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
@@ -8,7 +9,6 @@ import AboutSection from './components/AboutSection';
 import ExperienceSection from './components/ExperienceSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
 import StarField from './components/StarField';
 
 const AppContent: React.FC = () => {
