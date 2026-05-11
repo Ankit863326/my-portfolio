@@ -1,41 +1,47 @@
-<!-- ============================================
-     ANKIT SINGH PORTFOLIO FOOTER
-     Place this code just before </body> tag
-     ============================================ -->
+import React from "react";
 
-<footer style="
-  background: #ffffff;
-  border-top: 1px solid #e5e7eb;
-  padding: 16px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
-">
-  <p style="
-    margin: 0;
-    font-size: 14px;
-    color: #6b7280;
-  ">
-    © 2026 Ankit Singh. All rights reserved.
-  </p>
+const Footer: React.FC = () => {
+  return (
+    <footer
+      style={{
+        background: "transparent",
+        borderTop: "1px solid rgba(255,255,255,0.1)",
+        padding: "16px 40px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexWrap: "wrap" as const,
+        gap: "12px",
+      }}
+    >
+      <p
+        style={{
+          margin: 0,
+          fontSize: "14px",
+          color: "inherit",
+          opacity: 0.5,
+        }}
+      >
+        © 2026 Ankit Singh. All rights reserved.
+      </p>
 
-  <p style="
-    margin: 0;
-    font-size: 14px;
-    color: #6b7280;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  ">
-    Built with
-    <span style="color: #ef4444; font-size: 16px;">♥</span>
-    using React, TypeScript &amp; Material-UI
-  </p>
-</footer>
+      <p
+        style={{
+          margin: 0,
+          fontSize: "14px",
+          color: "inherit",
+          opacity: 0.5,
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+        }}
+      >
+        Built with{" "}
+        <span style={{ color: "#ef4444", opacity: 1, fontSize: "16px" }}>♥</span>
+        using React, TypeScript &amp; Material-UI
+      </p>
+    </footer>
+  );
+};
 
-<!-- ============================================
-     END OF FOOTER
-     ============================================ -->
+export default Footer;
